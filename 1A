@@ -1,0 +1,14 @@
+ilist=[]
+while True:
+    a=int(input())
+    if a!=-1:
+        ilist.append(a)
+    else:
+        break
+olist=[]    
+for x in ilist:
+    if x%2==0:
+        olist.append(x)
+print("THE EVEN NUMBER'S LIST IS ")        
+for y in olist:
+    print(y)
