@@ -1,32 +1,32 @@
 class CallDetail:
-    c1=0
-    c2=0
-    c3=0
-    def __init__(self,c,r,d,co):
-        self.cl=c
-        self.rcv=r
-        self.dur=d
-        self.code=co
-    def disp(self):
-        print(self.cl,self.rcv,self.dur,self.code)
-class util:
+    def __init__(self,call,recv,dur,typ):
+        self.caller_no=call
+        self.receiver_no=recv
+        self.duration=dur
+        self.type_of_call=typ
+
+    def print_details(self):
+        print("Call Details :\nCaller no. : ",self.caller_no,"\nReceiver no. : ",self.receiver_no,"\nDuration : ",self.duration," min\nType of Call : ",self.type_of_call,"\n")
+
+class Util:
+    list_of_call_objects=list()
     def __init__(self):
         self.list_of_call_objects=[]
+
     def parse_customer(self,list_of_call_string):
         for i in list_of_call_string:
-            x=i.split(",")
-            o=CallDetail(*x)
-            self.list_of_call_objects.append(o)
-    def display(self):
-        for i in self.list_of_call_objects:
-            i.disp()
-            
-call1='1234,4321,10,STD'
-call2='5678,8765,20,Local'
-call3='9632,2369,30,ISD'
+            call=i.split(',')
+            self.list_of_call_objects.append(CallDetail(call[0],call[1],call[2],call[3]))
 
-list_of_call_string=[call1,call2,call3]
-util().parse_customer(list_of_call_string)
-ob=util()
-ob.parse_customer(list_of_call_string)
-ob.display()
+    def print_list(self):
+        for call in self.list_of_call_objects:
+            call.print_details()
+            
+call='9990000001,9330000001,23,STD'
+call2='9990000001,9330000002,54,Local'
+call3='9990000001,9330000003,6,ISD'
+call4='9880458562,845636534,16,STD'
+list_of_call_string=[call,call2,call3,call4]
+obj=Util()
+obj.parse_customer(list_of_call_string) 
+obj.print_list()
